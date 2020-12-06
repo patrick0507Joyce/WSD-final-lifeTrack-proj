@@ -1,0 +1,27 @@
+<%- include('../partials/header.ejs') %>
+<% if (errors) { %>
+<ul>
+    <% Object.keys(errors).forEach((attribute) => { %>
+    <% Object.values(errors[attribute]).forEach((err) => { %>
+    <li><%= attribute %>: <%= err %></li>
+    <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+<h1>Evening Form</h1>
+<form method="POST" action="/behavior/reporting/evening">
+    Date: <input type="date" value="<%= new Date().toISOString().slice(0,10) %>" id="date" name="date" />
+    <label for="duration">How long do you spend on sports && exercise?</label>
+    Sports && Exercise Duration: <input type="number" id="exerciseDuration" name="exerciseDuration"
+        value="<%= exerciseDuration %>" />
+    <label for="duration">How long do you spend on study?</label>
+    Study Duration: <input type="number" id="studyDuration" name="studyDuration" value="<%= studyDuration %>" />
+    <label for="quality">Choose your regularity and quality of eating from 1-5, the higher the better quality</label>
+    Regularity eating quality: <input type="number" min="1" max="5" id="eatingQuality" name="eatingQuality"
+        value="<%= eatingQuality %>" />
+    <label for="mood">Choose your generic mood from 1-5, the higher the better mood</label>
+    Generic mood: <input type="number" min="1" max="5" id="generalMood" name="generalMood" value="<%= generalMood %>" />
+    <input type="submit" value="Submit" /> <a href="/behavior/reporting/morning">Morning Form</a> <a href="/">frontPage</a>
+</form>
+
+<%- include('../partials/footer.ejs') %>

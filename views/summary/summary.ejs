@@ -1,0 +1,15 @@
+<%- include('../partials/header.ejs') %>
+<h1>Personal Summary Report</h1>
+<%- include('../partials/summary-list.ejs', {
+    summary: weekly_summary,
+    title: "Weekly Summary",
+    customizedInterval:"week"
+});  %>
+
+<%- include('../partials/summary-list.ejs', {
+    summary: monthly_summary,
+    title: "Monthly Summary",
+    customizedInterval:"month"
+});  %>
+
+<%- include('../partials/footer.ejs') %>

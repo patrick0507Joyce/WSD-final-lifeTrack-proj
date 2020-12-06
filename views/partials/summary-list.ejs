@@ -1,0 +1,40 @@
+<h3>--- <%= title %> ---</h3>
+<form method="POST" action="/behavior/summary/cutomized/<%= customizedInterval %>">
+    Choose <%= customizedInterval %>: <input type="<%= customizedInterval %>" name="<%= customizedInterval %>" id="<%= customizedInterval %>" />
+    <input type="submit" value="Submit" />
+</form>
+<% if (summary) { %>
+<ul>
+    <li>Average sleep duration:
+        <% if (summary.sleep_duration_average) {%>
+        <%= summary.sleep_duration_average %>
+        <% } %>
+    </li>
+    <li>Average time spent on sports and exercise:
+        <% if (summary.exercise_duration_average) {%>
+        <%= summary.exercise_duration_average %>
+        <% } %>
+    </li>
+    <li>Average time spent studying:
+        <% if (summary.study_duration_average) {%>
+        <%= summary.study_duration_average %>
+        <% } %>
+    </li>
+    <li>Average sleep quality:
+        <% if (summary.sleep_quality_average) {%>
+        <%= summary.sleep_quality_average %>
+        <% } %>
+    </li>
+    <li>Average generic mood:
+        <% if (summary.general_mood_average) {%>
+        <%= summary.general_mood_average %>
+        <% } %>
+    </li>
+</ul>
+<% } else { %>
+<ul>
+    <li>
+        the <%= title %> is empty
+    </li>
+</ul>
+<% } %>

@@ -1,0 +1,9 @@
+<%- include('../partials/header.ejs') %>
+<form method="POST" action="/behavior/reporting">
+    <select name="timePeriod" id="timePeriod">
+        <option value="morning">morningForm</option>
+        <option value="evening">eveningForm</option>
+    </select>
+    <input type="submit" value="Submit!" />
+</form>
+<%- include('../partials/footer.ejs') %>

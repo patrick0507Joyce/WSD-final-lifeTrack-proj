@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs') %>
+<% if (errors) { %>
+<ul>
+    <% Object.keys(errors).forEach((attribute) => { %>
+    <% Object.values(errors[attribute]).forEach((err) => { %>
+    <li><%= attribute %>: <%= err %></li>
+    <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+<h1>Morning Form</h1>
+<form method="POST" action="/behavior/reporting/morning">
+    Date: <input type="date" name="date" value="<%= new Date().toISOString().slice(0,10) %>" id="date" />
+    <label for="duration">How long do you sleep?</label>
+    Sleep Duration: <input type="number" id="sleepDuration" name="sleepDuration" value="<%= sleepDuration %>" />
+    <label for="quality">Choose your sleep quality from 1-5, the higher the better quality</label>
+    Sleep quality: <input type="number" min="1" max="5" id="sleepQuality" name="sleepQuality"
+        value="<%= sleepQuality %>" />
+    <label for="mood">Choose your sleep mood from 1-5, the higher the better mood</label>
+    Sleep mood: <input type="number" min="1" max="5" id="sleepMood" name="sleepMood" value="<%= sleepMood %>" />
+    <input type="submit" value="Submit" /> <a href="/behavior/reporting/evening">Evening Form</a> <a href="/">frontPage</a>
+</form>
+<%- include('../partials/footer.ejs') %>
