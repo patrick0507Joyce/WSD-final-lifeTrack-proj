@@ -1,1 +1,1 @@
-web: deno run --allow-net --allow-env --allow-read --unstable=:${PORT} app.js --port=${PORT}
+web: deno run --allow-net --allow-env --allow-read --unstable app.js --port=${PORT}
