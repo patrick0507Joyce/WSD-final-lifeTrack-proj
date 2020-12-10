@@ -5,7 +5,7 @@ let config = {};
 if (Deno.env.get('TEST_ENVIRONMENT')) {
     config.database = {};
   } else {
-    const CONCURRENT_CONNECTIONS = 3;
+    const CONCURRENT_CONNECTIONS = 2;
     config.database = new Pool(
       {
         hostname: "hattie.db.elephantsql.com",
