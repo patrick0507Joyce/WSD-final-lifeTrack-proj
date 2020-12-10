@@ -1,4 +1,3 @@
-import { Client } from "../deps.js";
 import { config } from "../config/config.js";
 
 const getClient = async () => {
