@@ -54,7 +54,8 @@ const postLoginForm = async ({ request, response, session }) => {
 
   const passwordCorrect = await bcrypt.compare(password, hash);
   if (!passwordCorrect) {
-    respnse.status = 401;
+    response.body = "the password is wrong!";
+    response.status = 401;
     return;
   }
 
