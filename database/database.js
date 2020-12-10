@@ -1,7 +1,8 @@
 import { config } from "../config/config.js";
+import { Client } from "../deps.js";
 
-const getClient = async () => {
-  return await config.database.connect();
+const getClient = () => {
+  return new Client(config.database);
 };
 /*
 const executeQuery = async (query, ...params) => {
@@ -19,6 +20,7 @@ const executeQuery = async (query, ...params) => {
 */
 
 const executeQuery = async(query, ...args) => {
+  const client = getClient();
   try {
       await client.connect();
       return await client.query(query, ...args);
