@@ -6,4 +6,11 @@
     Password again: <input type="password" name="verification" />
     <input type="submit" value="Submit!" /> <a href="/">frontPage</a>
 </form>
+<% if (error) { %> 
+    <ul>
+        <li>
+            <%= error %>
+        </li>
+    </ul>
+<% } %>
 <%- include('../partials/footer.ejs') %>

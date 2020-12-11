@@ -26,7 +26,6 @@ app.use(middleware.limitAccessMiddleware);
 
 app.use(router.routes());
 
-const { args } = Deno;
 const DEFAULT_PORT = 7777;
 const argPort = parse(Deno.args).port;
 

@@ -2,7 +2,7 @@ import { executeQuery } from "../../database/database.js";
 import { bcrypt } from "../../deps.js";
 import { getExistingUsers, setUser } from "../../services/authService.js";
 
-const postRegistrationForm = async ({ request, response }) => {
+const postRegistrationForm = async ({ request, response, render }) => {
   const body = request.body();
   const params = await body.value;
 
@@ -11,18 +11,24 @@ const postRegistrationForm = async ({ request, response }) => {
   const verification = params.get("verification");
 
   if (password !== verification) {
-    response.body = "The entered passwords did not match";
+    render("./auth/registration.ejs", {
+      error: "The entered passwords did not match.",
+    });
     return;
   }
 
   const existingUsers = await getExistingUsers(email);
   if (existingUsers.rowCount > 0) {
-    response.body = "The email is already reserved.";
+    render("./auth/registration.ejs", {
+      error: "The email is already reserved.",
+    });
     return;
   }
 
   if (password.length < 4) {
-    response.body = "The password is too short(at least 4 characters).";
+    render("./auth/registration.ejs", {
+      error: "The password is too short(at least 4 characters",
+    });
     return;
   }
 
@@ -32,7 +38,7 @@ const postRegistrationForm = async ({ request, response }) => {
   response.redirect("/auth/login");
 };
 
-const postLoginForm = async ({ request, response, session }) => {
+const postLoginForm = async ({ request, response, session, render }) => {
   const body = request.body();
   const params = await body.value;
 
@@ -41,9 +47,8 @@ const postLoginForm = async ({ request, response, session }) => {
 
   // check if the email exists in the database
   const res = await getExistingUsers(email);
-
-  if (res.rowCount === 0) {
-    response.status = 401;
+  if (!res) {
+    render("./auth/login.ejs", { error: "the user email is not existed!" });
     return;
   }
 
@@ -54,7 +59,7 @@ const postLoginForm = async ({ request, response, session }) => {
 
   const passwordCorrect = await bcrypt.compare(password, hash);
   if (!passwordCorrect) {
-    respnse.status = 401;
+    render("./auth/login.ejs", { error: "Invalid email or password" });
     return;
   }
 

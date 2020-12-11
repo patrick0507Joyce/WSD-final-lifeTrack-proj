@@ -5,7 +5,7 @@ const getExistingUsers = async (email) => {
   if (res && res.rowCount > 0) {
     return res;
   } else {
-    return [];
+    return null;
   }
 };
 

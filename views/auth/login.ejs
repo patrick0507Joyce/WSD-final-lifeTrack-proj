@@ -5,6 +5,13 @@
     Password: <input type="password" name="password" />
     <input type="submit" value="Login!" /> <a href="/auth/registration">Register</a> 
     <a href="/">frontPage</a>
-</form> 
+</form>
 
+<% if (error) { %> 
+<ul>
+    <li>
+        <%= error %>
+    </li>
+</ul>
+<% } %>
 <%- include('../partials/footer.ejs') %>
