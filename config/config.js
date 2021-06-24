@@ -1,5 +1,6 @@
 let config = {};
 
+
 if (Deno.env.toObject().DATABASE_URL) {
   const DATABASE_URL = Deno.env.toObject().DATABASE_URL;
   config.database = DATABASE_URL;
@@ -7,6 +8,7 @@ if (Deno.env.toObject().DATABASE_URL) {
     config.database = {};
   } else {
     config.database = {
+        //TODO: fill the config with your own db info
         hostname: "hattie.db.elephantsql.com",
         database: "ejkihkqn",
         user: "ejkihkqn",
